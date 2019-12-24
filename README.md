@@ -25,9 +25,9 @@
 
 ****
 ## カタログ設計
-https://docs.google.com/spreadsheets/d/1QKIgpdiROtsA_IjuV4r8oZRBXh00VapGYOVuuVWDLtk/edit#gid=1781155221
+https://docs.google.com/spreadsheets/d/1QKIgpdiROtsA_IjuV4r8oZRBXh00VapGYOVuuVWDLtk/edit?usp=sharing
 ## テーブル定義
-https://docs.google.com/spreadsheets/d/14smyBXAP729wT6d0V-wQ7Tsvgr8ZZ8XUXvcDUhBbPmM/edit#gid=954352260
+https://docs.google.com/spreadsheets/d/14smyBXAP729wT6d0V-wQ7Tsvgr8ZZ8XUXvcDUhBbPmM/edit?usp=sharing
 ## ER図
 https://www.lucidchart.com/invitations/accept/8685db06-f878-4801-96c9-5c984ef652a9
 ## 画面遷移図
