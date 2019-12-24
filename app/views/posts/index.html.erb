@@ -5,6 +5,8 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
+      <th>UserName</th>
       <th>Content</th>
       <th>Image</th>
       <th>Youtube url</th>
@@ -15,12 +17,31 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <div>
+        <%= image_tag post.user.image.to_s%>
+        </div>
+
+        <div class="user_name">
+          <%= post.user.username %>
+        </div>
+
         <td><%= post.content %></td>
-        <td><%= post.image %></td>
+        <div class="post_image">
+        <% unless post.image.blank? %>
+          <%= image_tag post.image.to_s %>
+        <% end %>
+        </div>
         <td><%= post.youtube_url %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% unless post.user_id == current_user.id %>
+              <% if @favorite.present? %>
+                <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+              <% else %>
+                <%= link_to 'お気に入りする', favorites_path(post_id: post.id), method: :post, class: 'btn btn-primary' %>
+              <% end %>
+            <% end %></td>
       </tr>
     <% end %>
   </tbody>

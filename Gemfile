@@ -12,7 +12,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -37,3 +39,5 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'carrierwave'
+gem 'mini_magick'
