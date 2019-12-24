@@ -13,7 +13,7 @@
 - [ ] YouTubeのURLを自動的に埋め込み表示させる
 - [ ] 投稿のお気に入り機能
 - [ ] 投稿へのコメント機能
-- [ ] コメントへの画像投稿機能i
+- [ ] コメントへの画像投稿機能
 
 ## 使用gem一覧
 - [ ] devise
@@ -21,13 +21,20 @@
 - [ ] ransack
 - [ ] rspec-rails
 - [ ] factory_bot_rails
+- [ ] kaminari
 
 ****
 ## カタログ設計
+https://docs.google.com/spreadsheets/d/1QKIgpdiROtsA_IjuV4r8oZRBXh00VapGYOVuuVWDLtk/edit#gid=1781155221
 ## テーブル定義
+https://docs.google.com/spreadsheets/d/14smyBXAP729wT6d0V-wQ7Tsvgr8ZZ8XUXvcDUhBbPmM/edit#gid=954352260
 ## ER図
 https://www.lucidchart.com/invitations/accept/8685db06-f878-4801-96c9-5c984ef652a9
 ## 画面繊維図
 https://www.lucidchart.com/invitations/accept/3f478a86-f433-4811-8bb2-0d9e618de045
+##　ワイヤーフレーム
+https://cacoo.com/diagrams/YqQbtrICNv2Dk5wY/3FEA2
+
+
 
 ****
