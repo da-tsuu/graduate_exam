@@ -28,9 +28,9 @@
 https://docs.google.com/spreadsheets/d/1QKIgpdiROtsA_IjuV4r8oZRBXh00VapGYOVuuVWDLtk/edit?usp=sharing
 ## テーブル定義
 https://docs.google.com/spreadsheets/d/14smyBXAP729wT6d0V-wQ7Tsvgr8ZZ8XUXvcDUhBbPmM/edit?usp=sharing
-## ER図
-https://www.lucidchart.com/invitations/accept/8685db06-f878-4801-96c9-5c984ef652a9
 ## 画面遷移図
+https://www.lucidchart.com/invitations/accept/8685db06-f878-4801-96c9-5c984ef652a9
+## ER図
 https://www.lucidchart.com/invitations/accept/3f478a86-f433-4811-8bb2-0d9e618de045
 ## ワイヤーフレーム
 https://cacoo.com/diagrams/YqQbtrICNv2Dk5wY/3FEA2
