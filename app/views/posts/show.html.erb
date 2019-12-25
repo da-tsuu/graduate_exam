@@ -6,14 +6,21 @@
 </p>
 
 <p>
-  <strong>Image:</strong>
   <%= @post.image %>
 </p>
 
 <p>
-  <strong>Youtube url:</strong>
-  <%= @post.youtube_url %>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=@post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
+<div>
+<h4>コメント</h4>
+<div id="comments_area">
+  <%= render partial: 'comments/index', locals: { comments: @comments } %>
+</div>  
+<% if user_signed_in? %>
+  <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+<% end %>
+</div>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :comments
   get 'home/index'
   get 'home/show'
   root to: "posts#index"
-  resources :posts 
+  resources :posts do
+    resources :comments
+  end
   resources :favorites, only: [:create, :destroy]
   devise_for :users
   resources :users, only: [:show]
