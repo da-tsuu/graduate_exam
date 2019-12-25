@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :update, :destroy]
 
   def index
     @comments = Comment.all
@@ -13,14 +13,17 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id]).id
   end
 
   def create
-    @post = Post.find(params[:post_id]) 
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params) 
-    @comment.user_id = current_user.id 
+    @comment.user_id = current_user.id
     if @comment.save
-      render :index 
+      render :index
+    else
+      
     end
   end
 
@@ -49,6 +52,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:image, :message, :user_id, :post_id)
+      params.require(:comment).permit(:image, :message, :user_id, :post_id, :image_cache)
     end
 end

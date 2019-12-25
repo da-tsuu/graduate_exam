@@ -18,7 +18,12 @@
     <% unless comment.id.nil? %>
       <p><%= link_to "#{comment.user.username}さん", user_path(comment.user.id) %></p>
       <p>コメント：<%= comment.message %></p>
+      <div class="comment_image">
+      <% unless comment.image.blank? %>
+        <%= image_tag comment.image.to_s %>
+      <% end %>
       <% if comment.user == current_user %>
+        <p><%= link_to 'コメントを編集する', edit_post_comment_path(comment.post_id, comment.id), remote: true %></p>
         <p><%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %></p>
       <% end %>
     <% end %>
