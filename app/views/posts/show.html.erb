@@ -10,7 +10,11 @@
 </p>
 
 <p>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=@post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div class="post_youtube_url">
+    <% unless @post.youtube_url.blank? %>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=@post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <% end %>
+</div>
 </p>
 
 <div>

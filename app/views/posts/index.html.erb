@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
 <table>
+  <theader>
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :content_cont %>
+    <%= f.submit "検索" %>
+  <% end %>
+  </theader>
+  <h1>Posts</h1>
   <tbody>
     <% @posts.each do |post| %>
       <tr>
