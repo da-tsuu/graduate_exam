@@ -1,21 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<p>
-  <%= @post.image %>
-</p>
-
+<div class="user_info">
+  <div class="user_icon">
+  <% if @post.user.image.present? %>
+  <%= image_tag @post.user.image.to_s %>
+  <% else %>
+    <%= image_tag("non-image.jpg") %>
+  <% end %>
+  </div>
+  <%= @post.user.username %>
+</div>
+<hr>
 <p>
   <div class="post_youtube_url">
     <% unless @post.youtube_url.blank? %>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=@post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <% end %>
-</div>
+    <hr>
+    <%= @post.content %>
+    <% unless @post.image.blank? %>
+    <%= image_tag @post.image.to_s %>
+    <% end %>
+  </div>
 </p>
+<hr>
 
 <h4>コメント</h4>
 

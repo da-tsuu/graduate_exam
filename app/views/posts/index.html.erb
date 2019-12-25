@@ -9,35 +9,47 @@
   <h1>Posts</h1>
   <tbody>
     <% @posts.each do |post| %>
-      <tr>
-      <div class="user_info">
-        <div class="user_icon">
+      <div class="user_info"><h4>
+      <div class="user_icon">
+      <%= link_to(user_path(post.user.id)) do %>
+      <% unless post.user.image.blank? %>
         <%= image_tag post.user.image.to_s%>
+        <% else %>
+        <%= image_tag("non-image.jpg") %>
+      <% end %>
+      <% end %>
+        <%= post.user.username %></h4>
         </div>
-        <%= post.user.username %>
       </div>
-         <td><%= post.content %></td>
+      <hr>
+      <div class="post_youtube_url">
+      <% unless post.youtube_url.blank? %>
+        <div><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <% end %>
+      <br>
+      <div class="post_contents">
+        <%= post.content %>
         </div>
         <div class="post_image">
         <% unless post.image.blank? %>
           <%= image_tag post.image.to_s %>
         <% end %>
         </div>
-        <div class="post_youtube_url">
-        <% unless post.youtube_url.blank? %>
-          <td><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+      <hr>
+      </div>
+        <div><%= link_to 'Show', post %></div>
+        <% if post.user_id == current_user.id %>
+        <div><%= link_to 'Edit', edit_post_path(post) %></div>
+        <div><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></div>
         <% end %>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><% unless post.user_id == current_user.id %>
+        <div><% unless post.user_id == current_user.id %>
               <% if @favorite.present? %>
                 <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
               <% else %>
                 <%= link_to 'お気に入りする', favorites_path(post_id: post.id), method: :post, class: 'btn btn-primary' %>
               <% end %>
-            <% end %></td>
-      </tr>
+            <% end %></div>
+    <hr>
     <% end %>
   </tbody>
 </table>

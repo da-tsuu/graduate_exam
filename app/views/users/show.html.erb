@@ -1,10 +1,13 @@
-<h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
 <div class="">
   <aside class="">
     <div class="">
       <div class="">
-       <%= @user.username %>
+      <% unless @user.id == current_user.id %>
+       <h1><%= @user.username %>さんのページ</h1>
+      <% else %>
+       <h1>My Page </h1>
+       <%= link_to 'プロフィール変更', edit_user_registration_path(current_user) %> 
+      <% end %>
       </div>
       <div class="">
         <% if @user.image.present? %>
@@ -13,22 +16,47 @@
           <%= image_tag("non-image.jpg") %>
         <% end %>
       </div>
-      <% @posts.each do |post| %>
-        <div class="">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <%= post.content %>
-        <%= image_tag post.image.url %>
-        <div class="image">
-          <% if post.image.present? %>
-            <%= image_tag post.image.url %>
-          <% else %>
-            <%= image_tag("non-image.jpg") %>
-          <% end %>
-      <% end %>
       <div class="">
-        <p class="">自己紹介</p>
-        <p><%= @user.introduce %></p>
+        <h3 class="">自己紹介</h3>
+        <h4><%= @user.introduce %></h4>
       </div>
+      <br><hr>
+      <% unless @user.id == current_user.id %>
+      <h1><%= @user.username %>さんの投稿</h1>
+      <% else %>
+      <h1>My Posts</h1>
+      <% end %>
+      <% @posts.each do |post| %>
+        <div class="post_youtube_url">
+        <% unless post.youtube_url.blank? %>
+          <div><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <% end %>
+        <hr>
+        <br>
+        <h3><div class="post_contents">
+          <%= post.content %>
+          </div></h3>
+          <div class="post_image">
+          <% unless post.image.blank? %>
+            <%= image_tag post.image.to_s %>
+          <% end %>
+          </div>
+        <hr>
+        </div>
+          <div><%= link_to 'Show', post %></div>
+          <% if post.user_id == current_user.id %>
+          <div><%= link_to 'Edit', edit_post_path(post) %></div>
+          <div><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <% end %>
+          <div><% unless post.user_id == current_user.id %>
+                <% if @favorite.present? %>
+                  <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+                <% else %>
+                  <%= link_to 'お気に入りする', favorites_path(post_id: post.id), method: :post, class: 'btn btn-primary' %>
+                <% end %>
+              <% end %></div>
+      <hr>
+      <% end %>
     </div>
   </aside>
   </div>

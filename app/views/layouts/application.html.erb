@@ -12,10 +12,12 @@
   <body>
     <header>
       <nav>
+      <%= link_to(root_path) do %>
+        <%= image_tag 'VIDEOMANIA_logo.png', class: 'Videomania_logo' %>
+      <% end %>
         <% if user_signed_in? %> 
-          Logged in as <strong><%= current_user.email %></strong>
-          <%= link_to 'プロフィール', user_path(current_user) %> |
-          <%= link_to 'プロフィール変更', edit_user_registration_path(current_user) %> |
+        <p class="navbar-text navbar-right">Logged in as <strong><%= current_user.email %></strong></p>
+          <%= link_to 'My Page', user_path(current_user) %> |
           <%= link_to "ログアウト", sign_out_path %>
         <% else %>
           <%= link_to "サインイン", new_user_registration_path %> |
