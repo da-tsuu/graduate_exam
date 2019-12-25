@@ -1,26 +1,42 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
 <table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>Image</th>
-      <th>Youtube url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+  <theader>
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :content_cont %>
+    <%= f.submit "検索" %>
+  <% end %>
+  </theader>
+  <h1>Posts</h1>
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.content %></td>
-        <td><%= post.image %></td>
-        <td><%= post.youtube_url %></td>
+      <div class="user_info">
+        <div class="user_icon">
+        <%= image_tag post.user.image.to_s%>
+        </div>
+        <%= post.user.username %>
+      </div>
+         <td><%= post.content %></td>
+        </div>
+        <div class="post_image">
+        <% unless post.image.blank? %>
+          <%= image_tag post.image.to_s %>
+        <% end %>
+        </div>
+        <div class="post_youtube_url">
+        <% unless post.youtube_url.blank? %>
+          <td><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+        <% end %>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% unless post.user_id == current_user.id %>
+              <% if @favorite.present? %>
+                <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+              <% else %>
+                <%= link_to 'お気に入りする', favorites_path(post_id: post.id), method: :post, class: 'btn btn-primary' %>
+              <% end %>
+            <% end %></td>
       </tr>
     <% end %>
   </tbody>

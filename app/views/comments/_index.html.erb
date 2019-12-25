@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Message</th>
+      <th>User</th>
+      <th>Post</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% comments.each do |comment| %>
+    <% unless comment.id.nil? %>
+      <p><%= link_to "#{comment.user.username}さん", user_path(comment.user.id) %></p>
+      <p>コメント：<%= comment.message %></p>
+      <% if comment.user == current_user %>
+        <p><%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comment', new_comment_path %>
