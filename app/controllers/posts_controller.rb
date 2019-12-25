@@ -1,12 +1,16 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+
   def index
-    @posts = Post.all
+    @q = Post.ransack(params[:q])
+    @posts = @q.result
   end
 
   def show
     @favorite = current_user.favorites.find_by(post_id: @post.id)
+    @comment = Comment.new 
+    @comments = @post.comments 
   end
 
   def new
@@ -19,6 +23,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    url = params[:post][:youtube_url]
+    url = url.last(11)
+    @post.youtube_url = url
 
     respond_to do |format|
       if @post.save
@@ -29,6 +36,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   def update
@@ -58,5 +66,9 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:content, :image, :youtube_url)
+    end
+
+    def search_params
+      params.require(:q).permit(:content_cont)
     end
 end
