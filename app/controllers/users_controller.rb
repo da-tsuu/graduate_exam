@@ -5,4 +5,8 @@ class UsersController < ApplicationController
     @posts = Post.where(user_id: @user.id)
   end
 
+  def favorites
+    @user = User.find(params[:id])
+  end
+
 end

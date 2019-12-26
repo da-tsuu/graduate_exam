@@ -10,27 +10,31 @@
   </head>
 
   <body>
-    <header>
+    <app_header>
       <nav>
       <%= link_to(root_path) do %>
         <%= image_tag 'VIDEOMANIA_logo.png', class: 'Videomania_logo' %>
       <% end %>
         <% if user_signed_in? %> 
         <p class="navbar-text navbar-right">Logged in as <strong><%= current_user.email %></strong></p>
+          <%= link_to 'Home', posts_path %> |
           <%= link_to 'My Page', user_path(current_user) %> |
-          <%= link_to "ログアウト", sign_out_path %>
+          <%= link_to 'New Post', new_post_path %> |
+        <p class="navbar-text navbar-right"><%= link_to "ログアウト", sign_out_path, id: "logout" %> |</p>
         <% else %>
           <%= link_to "サインイン", new_user_registration_path %> |
           <%= link_to "ログイン", new_user_session_path %>
         <% end %>
       </nav>
 
-    </header>
+    </app_header>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <div class="container">
     <%= yield %>
+    <footer>
+    </footer>
     </div>
   </body>
 </html>

@@ -1,0 +1,19 @@
+<div>
+<%= form_with(model: [@post, @comment]) do |form| %>
+    <p id="error-message"></p>
+
+    <div class="field">
+        <%= form.label :comment %>
+        <%= form.text_area :message, class: "input", id: "edit_comment" %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit "編集する", class: "button is-info" %>
+    </div>
+<% end %>
+
+
+
+<%= link_to 'Show', @comment %> |
+<%= link_to 'Back', comments_path %>
+</div>

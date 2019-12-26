@@ -1,40 +1,34 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :update, :destroy]
-
-  def index
-    @comments = Comment.all
-  end
+  before_action :set_post
 
   def show
-  end
-
-  def new
-    @comment = Comment.new
+    @comments = @post.comments
+    @comment = @post.coment.build
   end
 
   def edit
-    @comment = Comment.find(params[:id]).id
+    @comment = @post.comments.find(params[:id])
   end
 
   def create
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params) 
     @comment.user_id = current_user.id
-    if @comment.save
-      render :index
-    else
-      
+    respond_to do |format|
+      if @comment.save
+        format.js { render :index }
+      else
+        format.html { redirect_to post_path(@post), notice: '投稿できませんでした...' }
+      end
     end
   end
 
   def update
+    @comment = @post.comments.find(params[:id])
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
+        format.js { render :index }
       else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js { render :errors }
       end
     end
   end
@@ -53,5 +47,9 @@ class CommentsController < ApplicationController
 
     def comment_params
       params.require(:comment).permit(:image, :message, :user_id, :post_id, :image_cache)
+    end
+
+    def set_post
+      @post = Post.find(params[:post_id])
     end
 end
