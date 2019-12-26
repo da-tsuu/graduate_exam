@@ -2,7 +2,7 @@
 <table>
   <theader>
   <%= search_form_for @q do |f| %>
-    <%= f.search_field :content_cont %>
+    <%= f.search_field :content_cont, id: "search_bar" %>
     <%= f.submit "検索" %>
   <% end %>
   </theader>
@@ -37,12 +37,12 @@
         </div>
       <hr>
       </div>
-        <div><%= link_to 'Show', post %></div>
+        <div id="show_button"><%= link_to 'Show', post %></div>
         <% if post.user_id == current_user.id %>
         <div><%= link_to 'Edit', edit_post_path(post) %></div>
         <div><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></div>
         <% end %>
-        <div><% if post.user_id != current_user.id %>
+        <div id="favorite_button"><% if post.user_id != current_user.id %>
               <% if current_user.favorites.find_by(post_id: post.id).present? %>
                 <%= link_to 'お気に入り解除する', favorite_path(id: post.id), method: :delete, class: 'btn btn-danger' %>
               <% else %>
