@@ -26,17 +26,18 @@
       <% unless post.youtube_url.blank? %>
         <div><iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
       <% end %>
-      <br>
+      <br><br>
       <div class="post_contents">
         <%= post.content %>
         </div>
+        <br><br>
         <div class="post_image">
         <% unless post.image.blank? %>
           <%= image_tag post.image.to_s %>
         <% end %>
         </div>
-      <hr>
       </div>
+      <br><br>
         <div id="show_button"><%= link_to 'Show', post %></div>
         <% if post.user_id == current_user.id %>
         <div><%= link_to 'Edit', edit_post_path(post) %></div>
