@@ -6,8 +6,5 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   mount_uploader :image, PostImageUploader
   validates :youtube_url, length: { maximum: 255 }
-
-  def favorited_by? user
-    favorites.where(user_id: user.id).exists?
-  end
+  validates :content, presence: true
 end
