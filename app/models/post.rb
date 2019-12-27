@@ -7,4 +7,5 @@ class Post < ApplicationRecord
   mount_uploader :image, PostImageUploader
   validates :youtube_url, length: { maximum: 255 }
   validates :content, presence: true
+  # validates :youtube_url, length: { is: 11 }
 end

@@ -21,7 +21,6 @@
 - [ ] ransack
 - [ ] rspec-rails
 - [ ] factory_bot_rails
-- [ ] kaminari
 
 ****
 ## カタログ設計

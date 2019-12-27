@@ -9,16 +9,16 @@
   <h1>Posts</h1>
   <tbody>
     <% @posts.each do |post| %>
-      <div class="user_info"><h4>
-      <div class="user_icon">
-      <%= link_to(user_path(post.user.id)) do %>
-      <% unless post.user.image.blank? %>
-        <%= image_tag post.user.image.to_s%>
-        <% else %>
-        <%= image_tag("non-image.jpg") %>
+      <div class="user_info">
+      <h4><div class="user_icon">
+        <%= link_to(user_path(post.user.id)) do %>
+        <% unless post.user.image.blank? %>
+          <%= image_tag post.user.image.to_s%>
+          <% else %>
+          <%= image_tag("non-image.jpg") %>
+        <% end %>
       <% end %>
-      <% end %>
-        <%= post.user.username %></h4>
+          <%= post.user.username %></h4>
         </div>
       </div>
       <hr>
@@ -37,19 +37,20 @@
         <% end %>
         </div>
       </div>
-      <br><br>
-        <div id="show_button"><%= link_to 'Show', post %></div>
+      <br>
+        <p id="show_button"><%= link_to t('post.Show'), post, class: 'btn btn-default' %></p>
         <% if post.user_id == current_user.id %>
-        <div><%= link_to 'Edit', edit_post_path(post) %></div>
-        <div><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <%= link_to t('post.Edit'), edit_post_path(post), class: 'btn btn-default' %>
+          <%= link_to t('post.Destroy'), post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %>
         <% end %>
         <div id="favorite_button"><% if post.user_id != current_user.id %>
-              <% if current_user.favorites.find_by(post_id: post.id).present? %>
-                <%= link_to 'お気に入り解除する', favorite_path(id: post.id), method: :delete, class: 'btn btn-danger' %>
-              <% else %>
-                <%= link_to 'お気に入りする', favorites_path(post_id: post.id), method: :post, class: 'btn btn-primary' %>
-              <% end %>
-            <% end %></div>
+          <% if current_user.favorites.find_by(post_id: post.id).present? %>
+            <%= link_to 'お気に入り解除する', favorite_path(id: post.id), method: :delete, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to 'お気に入りする', favorites_path(post_id: post.id), method: :post, class: 'btn btn-primary' %>
+          <% end %>
+        <% end %></div>
+        <br><hr><br>
     <hr>
     <% end %>
   </tbody>
@@ -57,4 +58,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path, class: 'btn btn-success' %>

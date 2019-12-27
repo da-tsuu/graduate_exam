@@ -10,6 +10,7 @@
   </head>
 
   <body>
+  <div class="wrapper">
     <app_header>
       <nav>
       <%= link_to(root_path) do %>
@@ -17,13 +18,13 @@
       <% end %>
         <% if user_signed_in? %> 
         <p class="navbar-text navbar-right">Logged in as <strong><%= current_user.email %></strong></p>
-          <%= link_to 'Home', posts_path %> |
-          <%= link_to 'My Page', user_path(current_user) %> |
-          <%= link_to 'New Post', new_post_path %> |
-        <p class="navbar-text navbar-right"><%= link_to "ログアウト", sign_out_path, id: "logout" %> |</p>
+          <%= link_to 'Home', posts_path, class: 'btn btn-default' %> 
+          <%= link_to 'My Page', user_path(current_user), class: 'btn btn-default' %> 
+          <%= link_to 'New Post', new_post_path, class: 'btn btn-default' %> 
+        <p class="navbar-text navbar-right"><%= link_to "ログアウト", sign_out_path, id: "logout", class: 'btn btn-default' %></p>
         <% else %>
-          <%= link_to "サインイン", new_user_registration_path %> |
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "サインイン", new_user_registration_path, class: 'btn btn-default' %> 
+          <%= link_to "ログイン", new_user_session_path, class: 'btn btn-default' %>
         <% end %>
       </nav>
 
@@ -31,10 +32,12 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div class="container">
-    <%= yield %>
-    <footer>
-    </footer>
+      <div class="container">
+      <%= yield %>
+      </div>
+      <footer>
+        <p>@VIDEO_MANIA</p>
+      </footer>
     </div>
   </body>
 </html>

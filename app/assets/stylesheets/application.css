@@ -15,11 +15,32 @@
  *= require_self
  */
 
+
+
+ .wrapper{
+  min-height: 100vh;
+}
+
+footer{
+  width: 100%;
+  background-color: black;
+  color: aliceblue;
+  text-align: center;
+  padding: 30px 0;
+  bottom: 0;
+}
+
  .container {
      width: 100%;
      text-align: center;
  }
 
  .Videomania_logo{
-     width: 20%;
+     width: 25%;
  }
+
+ app_header{
+  width: 100%;
+ }
+
+ 
