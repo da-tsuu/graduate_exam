@@ -24,8 +24,8 @@
 
 footer{
   width: 100%;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   text-align: center;
   padding: 30px 0;
   position: fixed;
@@ -35,8 +35,7 @@ footer{
  .container {
      width: 100%;
      text-align: center;
-     background-image: url(img62154564.jpg);
-     color: white;
+     background-image: url(maison.png);
  }
 
  .Videomania_logo{
