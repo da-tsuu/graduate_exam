@@ -43,4 +43,6 @@ footer{
   width: 100%;
  }
 
- 
+ .btn-default {
+  margin: 18px;
+ }
